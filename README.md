@@ -1,0 +1,1 @@
+gui for [bakabot](https://github.com/flpFlan/bakabot)

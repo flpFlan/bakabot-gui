@@ -1,0 +1,30 @@
+{
+  "name": "bakabot-gui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^1.4.0",
+    "@tauri-apps/plugin-store": "2.0.0-alpha.1",
+    "element-plus": "^2.3.12",
+    "vue": "^3.2.45",
+    "vue-web-terminal": "3.1.8"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.4.0",
+    "@types/node": "^18.7.10",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "typescript": "^4.9.5",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-element-plus": "^0.8.0",
+    "unplugin-vue-components": "^0.25.1",
+    "vite": "^4.2.1",
+    "vue-tsc": "^1.0.11"
+  }
+}
