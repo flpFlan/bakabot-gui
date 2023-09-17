@@ -1,7 +1,7 @@
 import { invoke } from "@tauri-apps/api/tauri";
 import { api as TerminalApi } from "vue-web-terminal";
 const commands: any = {
-  test: function (command: any, success: any, failed: any) {
+  config: function (command: any, success: any, failed: any) {
     invoke("open_bot_config")
       .then(() => success())
       .catch((e) => failed(e));
@@ -9,7 +9,8 @@ const commands: any = {
 };
 
 export function onExecCmd(key: any, command: any, success: any, failed: any) {
-  commands[key](command, success, failed);
+  if (key in commands) commands[key](command, success, failed);
+  else failed("command not found");
 }
 
 export const config = {

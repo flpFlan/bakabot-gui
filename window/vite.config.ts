@@ -5,6 +5,9 @@ import ElementPlus from "unplugin-element-plus/vite";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import Icons from "unplugin-icons/vite";
+import IconsResolver from "unplugin-icons/resolver";
+import Inspect from "vite-plugin-inspect";
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
@@ -12,11 +15,17 @@ export default defineConfig(async () => ({
     vue(),
     ElementPlus({}),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      imports: ["vue"],
+      resolvers: [ElementPlusResolver(), IconsResolver({ prefix: "Icon" })],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        ElementPlusResolver(),
+        IconsResolver({ enabledCollections: ["ep"] }),
+      ],
     }),
+    Icons({ autoInstall: true }),
+    Inspect(),
   ],
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`

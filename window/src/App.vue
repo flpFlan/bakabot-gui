@@ -1,72 +1,71 @@
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
-import Terminal from "vue-web-terminal";
-import { config as terminalConfig, onExecCmd } from "./script/terminal";
-import { config as drawerConfig } from "./script/drawer";
-import MessageTimer from "./components/MessageTimer.vue";
+import AppHeader from "./components/head/AppHeader.vue";
+import AppMain from "./components/main/AppMain.vue"
+import AppSide from "./components/side/AppSide.vue";
+import AppFooter from "./components/footer/AppFooter.vue"
 import { messageTimerStore } from "./script/store";
 
-messageTimerStore.push({
-  date: new Date(),
-  message: "aaa",
-  groups: [1, 2],
-  sheduled: true,
-});
+for (let index = 0; index < 10; index++) {
+  messageTimerStore.push({
+    date: new Date(),
+    message: "aaa",
+    groups: [1, 2],
+    description: "ttt",
+    sheduled: true,
+  });
+}
 
-const dialog = ref(true);
-const userInput = reactive({ text: "" });
 </script>
 
 <template>
   <div class="common-layout">
-    <el-drawer v-model="dialog" v-bind="drawerConfig">
-      <el-text type="info">there are no current news yet</el-text>
-    </el-drawer>
-    <el-container>
+    <el-container direction="vertical">
+      <el-affix>
+        <el-header id="header" height="25px">
+          <app-header />
+        </el-header>
+      </el-affix>
       <el-container>
-        <el-main class="main"
-          ><terminal v-bind="terminalConfig" @exec-cmd="onExecCmd"></terminal>
-        </el-main>
-        <el-aside class="aside" width="20vw">
-          <message-timer />
-        </el-aside>
+        <el-container>
+          <el-main id="main">
+            <app-main />
+          </el-main>
+          <el-aside id="aside" width="20vw">
+            <app-side />
+          </el-aside>
+        </el-container>
+        <el-footer id="footer">
+          <app-footer />
+        </el-footer>
       </el-container>
-      <el-footer class="footer">
-        <el-form>
-          <el-form-item :inline="true" :model="userInput">
-            <el-input
-              v-model="userInput.text"
-              resize="none"
-              rows="7"
-              type="textarea"
-              placeholder="Enter your message..."
-            />
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="">发送</el-button>
-          </el-form-item>
-        </el-form>
-      </el-footer>
     </el-container>
   </div>
 </template>
 
 <style scoped>
-.main {
+#header {
+  background-color: #1d3043;
+  padding: 0;
+}
+
+#main {
   height: 70vh;
   margin: 0;
   display: flex;
 }
-.aside {
+
+#aside {
   padding: 0.5vw;
   height: 70vh;
   background-color: #1d1d1d;
 }
-.footer {
+
+#footer {
   width: 100%;
-  height: 30vh;
+  height: 25vh;
   margin: 0;
   padding: 0.5vw;
   background-color: #303030;
+  box-shadow: --el-box-shadow-dark;
 }
 </style>

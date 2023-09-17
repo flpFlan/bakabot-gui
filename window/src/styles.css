@@ -1,9 +1,9 @@
-body{
+body {
   background-color: #141414;
-    /* background-image: url(./assets/bg.png); */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
-    margin: 0;
-  }
+  /* background-image: url(./assets/bg.png); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  margin: 0;
+}

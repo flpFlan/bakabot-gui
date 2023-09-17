@@ -7,17 +7,20 @@ export class MessageTimer {
   date;
   message;
   groups;
+  description;
   sheduled;
 
   constructor(
     date: Date,
     message: string,
     groups: number[],
+    description: string,
     sheduled: boolean = true
   ) {
     this.date = date;
     this.message = message;
     this.groups = groups;
+    this.description = description
     this.sheduled = sheduled;
   }
 }
